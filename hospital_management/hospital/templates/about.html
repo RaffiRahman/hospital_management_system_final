@@ -1,0 +1,434 @@
+
+{% extends "navigationbar.html" %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+    /* ABOUT HERO SECTION */
+    .about-hero {
+        background: linear-gradient(
+            rgba(7, 89, 133, 0.85),
+            rgba(7, 89, 133, 0.85)
+        ),
+        url("{% static 'images/hospital1.webp' %}");
+
+        background-size: cover;
+        background-position: center;
+        padding: 85px 20px;
+        text-align: center;
+        color: white;
+    }
+
+    .about-hero h1 {
+        font-size: 45px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .about-hero p {
+        font-size: 18px;
+        color: #e0f2fe;
+    }
+
+    /* ABOUT CONTENT */
+    .about-content {
+        padding: 80px 0;
+        background: #f8fbff;
+    }
+
+    .about-image {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .about-text h5 {
+        color: #0284c7;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+    }
+
+    .about-text h2 {
+        color: #075985;
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .about-text p {
+        color: #64748b;
+        font-size: 16px;
+        line-height: 1.9;
+        text-align: justify;
+    }
+
+    /* MISSION VISION SECTION */
+    .mission-section {
+        padding: 75px 0;
+        background: white;
+    }
+
+    .mission-card {
+        padding: 35px 25px;
+        text-align: center;
+        background: #f8fbff;
+        border-radius: 15px;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        transition: 0.3s;
+        border-bottom: 4px solid #0284c7;
+    }
+
+    .mission-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    }
+
+    .mission-icon {
+        font-size: 45px;
+        color: #0284c7;
+        margin-bottom: 20px;
+    }
+
+    .mission-card h4 {
+        color: #075985;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .mission-card p {
+        color: #64748b;
+        line-height: 1.8;
+        margin-bottom: 0;
+    }
+
+    /* STATISTICS SECTION */
+    .stats-section {
+        background: #075985;
+        padding: 55px 0;
+        color: white;
+        text-align: center;
+    }
+
+    .stat-item h2 {
+        font-size: 38px;
+        font-weight: bold;
+        color: #38bdf8;
+    }
+
+    .stat-item p {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    /* CTA SECTION */
+    .about-cta {
+        background: #075985;
+        color: white;
+        padding: 65px 20px;
+        text-align: center;
+    }
+
+    .about-cta h2 {
+        color: #ffffff;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .about-cta p {
+        color: #9dabc0;
+        margin-bottom: 25px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+
+        .about-hero h1 {
+            font-size: 34px;
+        }
+
+        .about-content {
+            padding: 50px 0;
+        }
+
+        .about-image {
+            height: 280px;
+            margin-bottom: 30px;
+        }
+
+        .about-text h2 {
+            font-size: 28px;
+        }
+
+        .stat-item {
+            margin-bottom: 25px;
+        }
+    }
+
+</style>
+
+
+<!-- ABOUT HERO SECTION -->
+
+<section class="about-hero">
+
+    <div class="container">
+
+        <h1>About Our Hospital</h1>
+
+        <p>
+            Caring for Life, Committed to Excellence.
+            Your Health Is Our Priority.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT CONTENT SECTION -->
+
+<section class="about-content">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- HOSPITAL IMAGE -->
+
+            <div class="col-lg-6">
+
+                <img src="{% static 'images/about.jpg' %}"
+                     class="about-image"
+                     alt="About Our Hospital">
+
+            </div>
+
+
+            <!-- ABOUT TEXT -->
+
+            <div class="col-lg-6 about-text">
+
+                <h5>WHO WE ARE</h5>
+
+                <h2>
+                    Dedicated to Providing
+                    the Best Healthcare
+                </h2>
+
+                <p>
+                    Our hospital is committed to delivering
+                    comprehensive healthcare services to patients.
+                    We combine medical expertise, advanced
+                    technology and compassionate care to provide
+                    the best possible treatment.
+                </p>
+
+                <p>
+                    Our dedicated team of doctors, nurses and
+                    healthcare professionals works together
+                    to ensure every patient receives personalized
+                    attention and quality medical care.
+                </p>
+
+                <p>
+                    We believe that every patient deserves
+                    professional medical attention, respect
+                    and compassionate treatment throughout
+                    their healthcare journey.
+                </p>
+
+                <a href="{% url 'login' %}"
+                   class="btn btn-primary btn-lg mt-3">
+
+                    Book An Appointment
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MISSION AND VISION SECTION -->
+
+<section class="mission-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 style="color:#075985; font-weight:bold;">
+                What Makes Us Different?
+            </h2>
+
+            <p class="text-muted">
+                Our commitment to excellence drives everything we do.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <!-- OUR MISSION -->
+
+            <div class="col-md-4">
+
+                <div class="mission-card">
+
+                    <div class="mission-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+
+                    <h4>Our Mission</h4>
+
+                    <p>
+                        To provide high-quality, affordable and
+                        compassionate healthcare services to
+                        every patient with dedication and
+                        professionalism.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- OUR VISION -->
+
+            <div class="col-md-4">
+
+                <div class="mission-card">
+
+                    <div class="mission-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+
+                    <h4>Our Vision</h4>
+
+                    <p>
+                        To become a trusted healthcare institution
+                        recognized for medical excellence,
+                        innovation and outstanding patient care.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- OUR VALUES -->
+
+            <div class="col-md-4">
+
+                <div class="mission-card">
+
+                    <div class="mission-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+
+                    <h4>Our Values</h4>
+
+                    <p>
+                        We believe in compassion, integrity,
+                        respect, teamwork and putting our
+                        patients first in everything we do.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% comment %} <!-- HOSPITAL STATISTICS -->
+
+<section class="stats-section">
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-6 col-md-3 stat-item">
+
+                <h2>50+</h2>
+
+                <p>Expert Doctors</p>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 stat-item">
+
+                <h2>20+</h2>
+
+                <p>Departments</p>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 stat-item">
+
+                <h2>1000+</h2>
+
+                <p>Happy Patients</p>
+
+            </div>
+
+
+            <div class="col-6 col-md-3 stat-item">
+
+                <h2>24/7</h2>
+
+                <p>Medical Support</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section> {% endcomment %}
+
+
+<!-- CALL TO ACTION -->
+
+<section class="about-cta">
+
+    <div class="container">
+
+        <h2>Your Health Deserves the Best Care</h2>
+
+        <p>
+            Take the first step towards a healthier life.
+            Our experienced medical team is here to help you.
+        </p>
+
+        <a href="{% url 'login' %}"
+           class="btn btn-primary btn-lg">
+
+            Book Your Appointment
+
+        </a>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

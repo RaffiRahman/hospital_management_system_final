@@ -1,0 +1,320 @@
+
+{% extends "navigationbar.html" %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+    /* GENERAL SECTION */
+    .add-doctor-section {
+        background: #f0f9ff;
+        min-height: 90vh;
+        padding: 50px 0 80px;
+    }
+
+    /* HERO BANNER */
+    .doctor-hero {
+        background: linear-gradient(
+            120deg,
+            rgba(7, 89, 133, 0.95),
+            rgba(2, 132, 199, 0.75)
+        ),
+        url("{% static 'images/hospital1.webp' %}");
+
+        background-size: cover;
+        background-position: center;
+        padding: 45px 35px;
+        border-radius: 18px;
+        color: white;
+        margin-bottom: 45px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .doctor-hero h1 {
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .doctor-hero p {
+        color: #e0f2fe;
+        font-size: 17px;
+        margin-bottom: 0;
+    }
+
+    .doctor-hero-icon {
+        font-size: 65px;
+        color: #bae6fd;
+    }
+
+    /* FORM CARD */
+    .doctor-form-card {
+        background: white;
+        max-width: 750px;
+        margin: auto;
+        padding: 45px;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    .form-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .form-heading-icon {
+        width: 85px;
+        height: 85px;
+        background: #e0f2fe;
+        color: #0284c7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+        margin: 0 auto 20px;
+    }
+
+    .form-heading h2 {
+        color: #075985;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-heading p {
+        color: #64748b;
+    }
+
+    /* FORM LABELS */
+    .doctor-form-card label {
+        color: #334155;
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .doctor-form-card label i {
+        color: #0284c7;
+        margin-right: 8px;
+    }
+
+    /* INPUT FIELDS */
+    .doctor-form-card .form-control {
+        padding: 14px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 9px;
+        font-size: 15px;
+        margin-bottom: 25px;
+        transition: 0.3s;
+    }
+
+    .doctor-form-card .form-control:focus {
+        border-color: #0284c7;
+        box-shadow: 0 0 0 0.2rem rgba(2,132,199,0.15);
+    }
+
+    /* SUBMIT BUTTON */
+    .submit-btn {
+        width: 100%;
+        background: #075985;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 30px;
+        font-size: 17px;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+        background: #0284c7;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(2,132,199,0.25);
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media(max-width: 768px) {
+
+        .add-doctor-section {
+            padding: 30px 0 50px;
+        }
+
+        .doctor-hero {
+            padding: 35px 25px;
+            text-align: center;
+        }
+
+        .doctor-hero h1 {
+            font-size: 30px;
+        }
+
+        .doctor-hero-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .doctor-form-card {
+            padding: 30px 22px;
+        }
+
+    }
+
+</style>
+
+
+<section class="add-doctor-section">
+
+    <div class="container">
+
+
+        <!-- HERO SECTION -->
+
+        <div class="doctor-hero">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-2 text-center">
+
+                    <i class="fas fa-user-md doctor-hero-icon"></i>
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <h1>Add Doctor</h1>
+
+                    <p>
+                        Register new doctor details in the
+                        hospital management system.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADD DOCTOR FORM -->
+
+        <div class="doctor-form-card">
+
+
+            <!-- FORM HEADING -->
+
+            <div class="form-heading">
+
+                <div class="form-heading-icon">
+
+                    <i class="fas fa-user-md"></i>
+
+                </div>
+
+                <h2>Doctor Information</h2>
+
+                <p>
+                    Please provide the doctor's information
+                    to register a new doctor.
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form method="post" action="">
+
+                {% csrf_token %}
+
+
+                <!-- DOCTOR NAME -->
+
+                <label>
+                    <i class="fas fa-user"></i>
+                    Doctor Name
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="dname"
+                       placeholder="Enter doctor name..."
+                       required>
+
+
+                <!-- CONTACT -->
+
+                <label>
+                    <i class="fas fa-phone-alt"></i>
+                    Contact
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="contact"
+                       placeholder="Enter contact number..."
+                       required>
+
+
+                <!-- SPECIALIZATION -->
+
+                <label>
+                    <i class="fas fa-star"></i>
+                    Specialization
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="spec"
+                       placeholder="Enter specialization..."
+                       required>
+
+
+                <!-- SUBMIT BUTTON -->
+
+                <button type="submit" class="submit-btn">
+
+                    <i class="fas fa-paper-plane me-2"></i>
+                    Submit
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUCCESS MESSAGE -->
+
+{% if error == "no" %}
+
+<script>
+
+    alert('Record Saved Successfully');
+
+    window.location = "{% url 'view_doctor' %}";
+
+</script>
+
+{% endif %}
+
+
+<!-- ERROR MESSAGE -->
+
+{% if error == "yes" %}
+
+<script>
+
+    alert('Something went wrong, Try Again');
+
+</script>
+
+{% endif %}
+
+
+{% endblock %}

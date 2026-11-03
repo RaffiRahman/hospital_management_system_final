@@ -1,0 +1,32 @@
+.nav-link{
+    color:white !important;
+}
+.nav-link:hover{
+    color:aqua !important;
+    background-color: darkslateblue;
+    border-radius: 10px;
+}
+.navbar-brand:hover{
+    color:aqua !important;
+    font-weight: bold;
+}
+
+.mydivstyle:hover{
+    box-shadow: 0 0 20px 0 rgb(0,0,0,0.3);
+    transform: translate(-20px);
+}
+
+.rounded{
+    border-top:8px solid lightblue;
+    border-radius: 5px;
+}
+
+
+#example th,
+#example td{
+    text-align:center;
+}
+
+#example thead th {
+    font-weight: bold;
+}

@@ -1,0 +1,367 @@
+
+{% extends "navigationbar.html" %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+    /* DASHBOARD GENERAL */
+    .dashboard-section {
+        background: #f8fbff;
+        min-height: 85vh;
+        padding: 60px 0;
+    }
+
+    /* DASHBOARD HEADER */
+    .dashboard-header {
+        background: linear-gradient(135deg, #075985, #0284c7);
+        padding: 40px;
+        border-radius: 15px;
+        color: white;
+        margin-bottom: 40px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .dashboard-header h2 {
+        font-weight: bold;
+        font-size: 32px;
+        margin-bottom: 12px;
+    }
+
+    .dashboard-header p {
+        color: #e0f2fe;
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    .dashboard-header i {
+        font-size: 65px;
+        color: #bae6fd;
+    }
+
+    /* DASHBOARD CARDS */
+    .dashboard-card {
+        background: white;
+        padding: 35px 25px;
+        border-radius: 15px;
+        text-align: center;
+        height: 100%;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+        transition: 0.3s;
+        border-bottom: 4px solid #0284c7;
+    }
+
+    .dashboard-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+    }
+
+    .dashboard-icon {
+        width: 80px;
+        height: 80px;
+        background: #e0f2fe;
+        color: #0284c7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 35px;
+        margin: 0 auto 20px;
+    }
+
+    .dashboard-card h2 {
+        color: #075985;
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-card h4 {
+        color: #334155;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-card a {
+        text-decoration: none;
+    }
+
+    .dashboard-btn {
+        display: inline-block;
+        background: #075985;
+        color: white;
+        padding: 10px 25px;
+        border-radius: 25px;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    .dashboard-btn:hover {
+        background: #0284c7;
+        color: white;
+    }
+
+    /* QUICK ACTION SECTION */
+    .quick-action-section {
+        margin-top: 50px;
+    }
+
+    .quick-action-section h3 {
+        color: #075985;
+        font-weight: bold;
+        margin-bottom: 25px;
+    }
+
+    .quick-action-card {
+        background: white;
+        padding: 22px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        transition: 0.3s;
+        height: 100%;
+    }
+
+    .quick-action-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .quick-action-card a {
+        color: #075985;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 17px;
+    }
+
+    .quick-action-card i {
+        color: #0284c7;
+        font-size: 24px;
+        margin-right: 12px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+
+        .dashboard-section {
+            padding: 35px 0;
+        }
+
+        .dashboard-header {
+            padding: 30px 20px;
+        }
+
+        .dashboard-header h2 {
+            font-size: 25px;
+        }
+
+        .dashboard-header i {
+            font-size: 45px;
+            margin-top: 20px;
+        }
+
+    }
+
+</style>
+
+
+<section class="dashboard-section">
+
+    <div class="container">
+
+
+        <!-- DASHBOARD HEADER -->
+
+        <div class="dashboard-header">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-9">
+
+                    <h2>
+                        Welcome to Assistant Dashboard
+                    </h2>
+
+                    <p>
+                        Manage doctors, patients and appointments
+                        efficiently from one place.
+                    </p>
+
+                </div>
+
+                <div class="col-md-3 text-md-end text-center">
+
+                    <i class="fas fa-hospital-user"></i>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD STATISTICS -->
+
+        <div class="row g-4">
+
+
+            <!-- DOCTORS CARD -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fas fa-user-md"></i>
+
+                    </div>
+
+                    <h2>{{ d }}</h2>
+
+                    <h4>Total Doctors</h4>
+
+                    <a href="{% url 'view_doctor' %}"
+                       class="dashboard-btn">
+
+                        View Doctors
+                        <i class="fas fa-arrow-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- PATIENTS CARD -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fas fa-users"></i>
+
+                    </div>
+
+                    <h2>{{ p }}</h2>
+
+                    <h4>Total Patients</h4>
+
+                    <a href="{% url 'view_patient' %}"
+                       class="dashboard-btn">
+
+                        View Patients
+                        <i class="fas fa-arrow-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- APPOINTMENTS CARD -->
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="dashboard-card">
+
+                    <div class="dashboard-icon">
+
+                        <i class="fas fa-calendar-check"></i>
+
+                    </div>
+
+                    <h2>{{ ap }}</h2>
+
+                    <h4>Total Appointments</h4>
+
+                    <a href="{% url 'view_appointment' %}"
+                       class="dashboard-btn">
+
+                        View Appointments
+                        <i class="fas fa-arrow-right ms-2"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- QUICK ACTION SECTION -->
+
+        <div class="quick-action-section">
+
+            <h3>
+                <i class="fas fa-th-large me-2"></i>
+                Quick Actions
+            </h3>
+
+            <div class="row g-4">
+
+
+                <div class="col-md-4">
+
+                    <div class="quick-action-card">
+
+                        <a href="{% url 'view_doctor' %}">
+
+                            <i class="fas fa-user-md"></i>
+                            Manage Doctors
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="quick-action-card">
+
+                        <a href="{% url 'view_patient' %}">
+
+                            <i class="fas fa-user-injured"></i>
+                            Manage Patients
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <div class="quick-action-card">
+
+                        <a href="{% url 'view_appointment' %}">
+
+                            <i class="fas fa-calendar-alt"></i>
+                            Manage Appointments
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+{% endblock %}

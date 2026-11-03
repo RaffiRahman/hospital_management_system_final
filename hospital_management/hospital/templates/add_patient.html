@@ -1,0 +1,386 @@
+
+{% extends "navigationbar.html" %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+    /* GENERAL SECTION */
+    .add-patient-section {
+        background: #f0f9ff;
+        min-height: 90vh;
+        padding: 50px 0 80px;
+    }
+
+    /* HERO SECTION */
+    .patient-hero {
+        background: linear-gradient(
+            120deg,
+            rgba(7, 89, 133, 0.95),
+            rgba(2, 132, 199, 0.75)
+        ),
+        url("{% static 'images/hospital1.webp' %}");
+
+        background-size: cover;
+        background-position: center;
+        padding: 45px 35px;
+        border-radius: 18px;
+        color: white;
+        margin-bottom: 45px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .patient-hero h1 {
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .patient-hero p {
+        color: #e0f2fe;
+        font-size: 17px;
+        margin-bottom: 0;
+    }
+
+    .patient-hero-icon {
+        font-size: 65px;
+        color: #bae6fd;
+    }
+
+    /* FORM CARD */
+    .patient-form-card {
+        background: white;
+        max-width: 800px;
+        margin: auto;
+        padding: 45px;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    /* FORM HEADING */
+    .form-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .form-heading-icon {
+        width: 85px;
+        height: 85px;
+        background: #e0f2fe;
+        color: #0284c7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+        margin: 0 auto 20px;
+    }
+
+    .form-heading h2 {
+        color: #075985;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-heading p {
+        color: #64748b;
+    }
+
+    /* LABELS */
+    .patient-form-card label {
+        color: #334155;
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .patient-form-card label i {
+        color: #0284c7;
+        margin-right: 8px;
+    }
+
+    /* INPUT FIELDS */
+    .patient-form-card .form-control {
+        padding: 14px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 9px;
+        font-size: 15px;
+        margin-bottom: 25px;
+        transition: 0.3s;
+    }
+
+    .patient-form-card .form-control:focus {
+        border-color: #0284c7;
+        box-shadow: 0 0 0 0.2rem rgba(2,132,199,0.15);
+    }
+
+    .patient-form-card textarea.form-control {
+        resize: vertical;
+        min-height: 110px;
+    }
+
+    /* GENDER OPTIONS */
+    .gender-box {
+        background: #f8fbff;
+        border: 1px solid #cbd5e1;
+        border-radius: 9px;
+        padding: 15px 20px;
+        margin-bottom: 25px;
+    }
+
+    .gender-option {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 35px;
+        cursor: pointer;
+        color: #475569;
+        font-weight: 500;
+    }
+
+    .gender-option input {
+        width: 18px;
+        height: 18px;
+        margin-right: 9px;
+        accent-color: #0284c7;
+        cursor: pointer;
+    }
+
+    /* SUBMIT BUTTON */
+    .submit-btn {
+        width: 100%;
+        background: #075985;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 30px;
+        font-size: 17px;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+        background: #0284c7;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(2,132,199,0.25);
+    }
+
+    /* RESPONSIVE */
+    @media(max-width: 768px) {
+
+        .add-patient-section {
+            padding: 30px 0 50px;
+        }
+
+        .patient-hero {
+            padding: 35px 25px;
+            text-align: center;
+        }
+
+        .patient-hero h1 {
+            font-size: 30px;
+        }
+
+        .patient-hero-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .patient-form-card {
+            padding: 30px 22px;
+        }
+
+    }
+
+</style>
+
+
+<section class="add-patient-section">
+
+    <div class="container">
+
+
+        <!-- HERO SECTION -->
+
+        <div class="patient-hero">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-2 text-center">
+
+                    <i class="fas fa-user-injured patient-hero-icon"></i>
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <h1>Add Patient</h1>
+
+                    <p>
+                        Register new patient information
+                        in the hospital management system.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PATIENT FORM -->
+
+        <div class="patient-form-card">
+
+
+            <!-- FORM HEADING -->
+
+            <div class="form-heading">
+
+                <div class="form-heading-icon">
+
+                    <i class="fas fa-user-plus"></i>
+
+                </div>
+
+                <h2>Patient Information</h2>
+
+                <p>
+                    Please provide the patient's details
+                    to complete registration.
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form method="post" action="">
+
+                {% csrf_token %}
+
+
+                <!-- PATIENT NAME -->
+
+                <label>
+                    <i class="fas fa-user"></i>
+                    Patient Name
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="pname"
+                       placeholder="Enter patient name..."
+                       required>
+
+
+                <!-- GENDER -->
+
+                <label>
+                    <i class="fas fa-venus-mars"></i>
+                    Gender
+                </label>
+
+                <div class="gender-box">
+
+                    <label class="gender-option">
+
+                        <input type="radio"
+                               name="gender"
+                               value="Male"
+                               required>
+
+                        Male
+
+                    </label>
+
+
+                    <label class="gender-option">
+
+                        <input type="radio"
+                               name="gender"
+                               value="Female">
+
+                        Female
+
+                    </label>
+
+                </div>
+
+
+                <!-- MOBILE -->
+
+                <label>
+                    <i class="fas fa-phone-alt"></i>
+                    Mobile Number
+                </label>
+
+                <input type="text"
+                       class="form-control"
+                       name="mob"
+                       placeholder="Enter mobile number..."
+                       required>
+
+
+                <!-- ADDRESS -->
+
+                <label>
+                    <i class="fas fa-map-marker-alt"></i>
+                    Address
+                </label>
+
+                <textarea class="form-control"
+                          name="address"
+                          rows="4"
+                          placeholder="Enter patient address..."
+                          required></textarea>
+
+
+                <!-- SUBMIT BUTTON -->
+
+                <button type="submit" class="submit-btn">
+
+                    <i class="fas fa-paper-plane me-2"></i>
+                    Register Patient
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUCCESS MESSAGE -->
+
+{% if error == "no" %}
+
+<script>
+
+    alert('Record Saved Successfully');
+
+    window.location = "{% url 'view_patient' %}";
+
+</script>
+
+{% endif %}
+
+
+<!-- ERROR MESSAGE -->
+
+{% if error == "yes" %}
+
+<script>
+
+    alert('Something went wrong, Try Again');
+
+</script>
+
+{% endif %}
+
+
+{% endblock %}

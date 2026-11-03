@@ -1,0 +1,401 @@
+
+{% extends "navigationbar.html" %}
+{% load static %}
+
+{% block body %}
+
+<style>
+
+    /* GENERAL SECTION */
+    .add-appointment-section {
+        background: #f0f9ff;
+        min-height: 90vh;
+        padding: 50px 0 80px;
+    }
+
+    /* HERO SECTION */
+    .appointment-hero {
+        background: linear-gradient(
+            120deg,
+            rgba(7, 89, 133, 0.95),
+            rgba(2, 132, 199, 0.75)
+        ),
+        url("{% static 'images/hospital1.webp' %}");
+
+        background-size: cover;
+        background-position: center;
+        padding: 45px 35px;
+        border-radius: 18px;
+        color: white;
+        margin-bottom: 45px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+    }
+
+    .appointment-hero h1 {
+        font-size: 38px;
+        font-weight: bold;
+        margin-bottom: 12px;
+    }
+
+    .appointment-hero p {
+        color: #e0f2fe;
+        font-size: 17px;
+        margin-bottom: 0;
+    }
+
+    .appointment-hero-icon {
+        font-size: 65px;
+        color: #bae6fd;
+    }
+
+    /* FORM CARD */
+    .appointment-form-card {
+        background: white;
+        max-width: 800px;
+        margin: auto;
+        padding: 45px;
+        border-radius: 18px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    }
+
+    /* FORM HEADING */
+    .form-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .form-heading-icon {
+        width: 85px;
+        height: 85px;
+        background: #e0f2fe;
+        color: #0284c7;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 38px;
+        margin: 0 auto 20px;
+    }
+
+    .form-heading h2 {
+        color: #075985;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .form-heading p {
+        color: #64748b;
+    }
+
+    /* FORM LABELS */
+    .appointment-form-card label {
+        color: #334155;
+        font-weight: 600;
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .appointment-form-card label i {
+        color: #0284c7;
+        margin-right: 8px;
+    }
+
+    /* INPUT FIELDS */
+    .appointment-form-card .form-control {
+        padding: 14px 16px;
+        border: 1px solid #cbd5e1;
+        border-radius: 9px;
+        font-size: 15px;
+        margin-bottom: 25px;
+        transition: 0.3s;
+        background-color: white;
+    }
+
+    .appointment-form-card .form-control:focus {
+        border-color: #0284c7;
+        box-shadow: 0 0 0 0.2rem rgba(2,132,199,0.15);
+    }
+
+    /* DATE AND TIME */
+    .appointment-form-card input[type="date"],
+    .appointment-form-card input[type="time"] {
+        cursor: pointer;
+    }
+
+    /* SUBMIT BUTTON */
+    .submit-btn {
+        width: 100%;
+        background: #075985;
+        color: white;
+        border: none;
+        padding: 15px;
+        border-radius: 30px;
+        font-size: 17px;
+        font-weight: bold;
+        transition: 0.3s;
+        margin-top: 5px;
+    }
+
+    .submit-btn:hover {
+        background: #0284c7;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(2,132,199,0.25);
+    }
+
+    /* INFORMATION NOTE */
+    .appointment-note {
+        background: #e0f2fe;
+        padding: 18px;
+        border-radius: 10px;
+        margin-top: 25px;
+        color: #075985;
+        font-size: 14px;
+    }
+
+    .appointment-note i {
+        margin-right: 8px;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media(max-width: 768px) {
+
+        .add-appointment-section {
+            padding: 30px 0 50px;
+        }
+
+        .appointment-hero {
+            padding: 35px 25px;
+            text-align: center;
+        }
+
+        .appointment-hero h1 {
+            font-size: 30px;
+        }
+
+        .appointment-hero-icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+        }
+
+        .appointment-form-card {
+            padding: 30px 22px;
+        }
+
+    }
+
+</style>
+
+
+<section class="add-appointment-section">
+
+    <div class="container">
+
+
+        <!-- HERO SECTION -->
+
+        <div class="appointment-hero">
+
+            <div class="row align-items-center">
+
+                <div class="col-md-2 text-center">
+
+                    <i class="fas fa-calendar-check appointment-hero-icon"></i>
+
+                </div>
+
+                <div class="col-md-10">
+
+                    <h1>Add Appointment</h1>
+
+                    <p>
+                        Schedule a new patient appointment
+                        with our hospital doctors.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- APPOINTMENT FORM -->
+
+        <div class="appointment-form-card">
+
+
+            <!-- FORM HEADING -->
+
+            <div class="form-heading">
+
+                <div class="form-heading-icon">
+
+                    <i class="fas fa-calendar-plus"></i>
+
+                </div>
+
+                <h2>Appointment Information</h2>
+
+                <p>
+                    Please select a doctor, patient,
+                    appointment date and time.
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form method="post" action="">
+
+                {% csrf_token %}
+
+
+                <!-- DOCTOR NAME -->
+
+                <label>
+                    <i class="fas fa-user-md"></i>
+                    Doctor Name
+                </label>
+
+                <select name="doctor"
+                        class="form-control"
+                        required>
+
+                    <option value="" disabled selected>
+                        Select a Doctor
+                    </option>
+
+                    {% for i in doctor %}
+
+                    <option value="{{ i.name }}">
+                        {{ i.name }} [{{ i.id }}]
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <!-- PATIENT NAME -->
+
+                <label>
+                    <i class="fas fa-user-injured"></i>
+                    Patient Name
+                </label>
+
+                <select name="patient"
+                        class="form-control"
+                        required>
+
+                    <option value="" disabled selected>
+                        Select a Patient
+                    </option>
+
+                    {% for i in patient %}
+
+                    <option value="{{ i.name }}">
+                        {{ i.name }} [{{ i.id }}]
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+
+                <!-- DATE AND TIME -->
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <label>
+                            <i class="fas fa-calendar-alt"></i>
+                            Appointment Date
+                        </label>
+
+                        <input type="date"
+                               class="form-control"
+                               name="date"
+                               required>
+
+                    </div>
+
+
+                    <div class="col-md-6">
+
+                        <label>
+                            <i class="fas fa-clock"></i>
+                            Appointment Time
+                        </label>
+
+                        <input type="time"
+                               class="form-control"
+                               name="time"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMIT BUTTON -->
+
+                <button type="submit" class="submit-btn">
+
+                    <i class="fas fa-calendar-check me-2"></i>
+                    Schedule Appointment
+
+                </button>
+
+
+                <!-- INFORMATION NOTE -->
+
+                <div class="appointment-note">
+
+                    <i class="fas fa-info-circle"></i>
+
+                    Please ensure that the selected doctor,
+                    patient, date and time are correct
+                    before submitting.
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SUCCESS MESSAGE -->
+
+{% if error == "no" %}
+
+<script>
+
+    alert('Record Saved Successfully');
+
+    window.location = "{% url 'view_appointment' %}";
+
+</script>
+
+{% endif %}
+
+
+<!-- ERROR MESSAGE -->
+
+{% if error == "yes" %}
+
+<script>
+
+    alert('Something went wrong, Try Again');
+
+</script>
+
+{% endif %}
+
+
+{% endblock %}
